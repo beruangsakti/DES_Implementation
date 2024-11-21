@@ -10,7 +10,7 @@ def client_program():
     client_socket.connect((host, port))
 
     while True:
-        plaintext = input("Enter message to encrypt and send (or 'shutdown' to close the connection, or 'close' to close the client): ")
+        plaintext = input("Enter message to encrypt and send (or 'shutdown' to close the server, or 'Cut' to close the Connection): ")
 
         if plaintext == "shutdown":
             client_socket.send("shutdown".encode())
