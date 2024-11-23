@@ -1,4 +1,3 @@
-
 # Initial Permutation Table (IP)
 # This table tells us how to rearrange the bits at the start of encryption. 
 # It takes the original input and scrambles the bits in a specific way.

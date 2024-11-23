@@ -1,4 +1,3 @@
-
 # Initial Permutation Table (IP)
 # This table tells us how to rearrange the bits at the start of encryption. 
 # It takes the original input and scrambles the bits in a specific way.
@@ -238,17 +237,3 @@ def decrypt(ciphertext, key):
     for block in ciphertext_blocks:
         plaintext += des_decrypt(block, keys)  # Decrypt each block
     return unpad(bit_array_to_str(plaintext))  # Convert the plaintext to a string and unpad it
-
-# Example usage with print statements for each process
-key = "secret_k"
-plaintext = "World! it's me, DES! How are you doing?"
-
-print("Original Plaintext:", plaintext)
-
-# Encrypt the plaintext
-ciphertext = encrypt(plaintext, key)
-print("Ciphertext:", ciphertext)
-
-# Decrypt the ciphertext
-decrypted_text = decrypt(ciphertext, key)
-print("Decrypted text:", decrypted_text)

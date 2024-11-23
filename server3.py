@@ -1,8 +1,8 @@
 # server.py
 import socket
-from des import decrypt
 from pka import server_private_key
 import rsa
+from des import decrypt
 
 def start_server():
     key_received = None
@@ -19,7 +19,7 @@ def start_server():
         # Receive the encrypted DES key from the client
         encrypted_key = client_socket.recv(1024)
         print("Encrypted key received:", encrypted_key)
-        decrypted_key = rsa.decrypt(encrypted_key, server_private_key).decode('utf-8')
+        key_received = rsa.decrypt(encrypted_key, server_private_key).decode('utf-8')
         print("DES key received and decrypted:", key_received)
 
         while True:
