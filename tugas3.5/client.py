@@ -6,17 +6,21 @@ from des import encrypt
 # Hardcoded DES key for demonstration purposes
 DES_KEY = "12345678"
 
-def load_public_key():
-    # Load the public key
-    with open("public_key.pem", "rb") as public_file:
-        return RSA.import_key(public_file.read())
+# def load_public_key():
+#     # Load the public key
+#     with open("public_key.pem", "rb") as public_file:
+#         return RSA.import_key(public_file.read())
+
+def get_public_key_from_server(client):
+    public_key_data = client.recv(1024)  # Adjust size based on key length
+    return RSA.import_key(public_key_data)
 
 def client_program():
     client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     client.connect(("localhost", 12345))
 
     # Load public key from file
-    rsa_public_key = load_public_key()
+    rsa_public_key = get_public_key_from_server(client)
     cipher_rsa = PKCS1_OAEP.new(rsa_public_key)
 
     # Encrypt the hardcoded DES key
